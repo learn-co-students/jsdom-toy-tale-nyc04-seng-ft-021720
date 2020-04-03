@@ -83,11 +83,15 @@ function like(likesCount, id ){
 } 
 
 
-function deleteToy(id) {
+function deleteToy(id, parentNode) {
   return fetch(`http://localhost:3000/toys/${id}`, {
     method: 'delete'
   })
-  .then(response => response.json());
+  .then(response =>{
+    if(response.ok){
+      parentNode.remove()
+    }
+  })
 }
 
 
@@ -105,7 +109,6 @@ document.addEventListener('click', e=>{
   }
   else if(e.target.matches('.delete-btn')){
     let id = parentNode.dataset.id
-    deleteToy(id)
-    parentNode.remove()
+    deleteToy(id,parentNode)
   }
 })
