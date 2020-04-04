@@ -97,3 +97,8 @@ button:hover {
   font-family: monospace;
   margin: 3px;
 }
+
+.delete-btn {
+  width: 65px;
+  height: 30px;
+}
