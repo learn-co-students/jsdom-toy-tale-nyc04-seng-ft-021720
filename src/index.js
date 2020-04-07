@@ -71,6 +71,26 @@ document.addEventListener("DOMContentLoaded", () => {
 							}
 						});
 				});
+		} else if (event.target.className === 'toy-avatar') {
+			event.preventDefault();
+
+			// grab the toy card
+			const toyCard = event.target.closest('.card');
+			
+			// delete the toy from the database
+			fetch('http://localhost:3000/toys/' + toyCard.dataset.id, {
+				method: 'DELETE'
+			})
+				.then(response => {
+					if (response.ok){
+						// delete the card from the DOM
+						toyCard.remove();
+						console.log('deleted? ', response.ok);
+					} else {
+						console.log('something went wrong!');
+						console.log('fetch response: ', response);
+					}
+				})	
 		}
 	});
 
